@@ -20,9 +20,12 @@ class PDFProcessor:
 
         self.path = path
         self.should_remove = should_remove
-        self.load_pdf()
+        self._load_pdf()
     
-    def load_pdf(self):
+    def _load_pdf(self):
+        """
+        Load the PDF file and extract its content.
+        """
         self.reader = PdfReader(self.path)
         pages = self.reader.pages
         self.no_pages = len(pages)
@@ -57,4 +60,7 @@ class PDFProcessor:
         return output_path
 
     def get_script(self):
+        """
+        :return: Script object representing the PDF content.
+        """
         return self.script  

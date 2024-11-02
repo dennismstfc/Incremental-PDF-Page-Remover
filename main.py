@@ -2,17 +2,14 @@ import streamlit as st
 from pathlib import Path
 from pdf_processor import PDFProcessor  
 
-# Set page configuration
 st.set_page_config(page_title='Incremental PDF Page Remover', layout='wide')
 
-# Title and description
 st.title('Incremental PDF Page Remover')
 st.markdown("""
-    Upload your PDF file, and we'll remove any redundant pages for you!
+    Upload your PDF file and remove any redundant pages!
     Just drag and drop your file below and click the button to process it.
 """)
 
-# Upload PDF file
 uploaded_file = st.file_uploader("Choose a PDF file", type="pdf")
 
 # Save the uploaded file into scripts/ folder
@@ -43,7 +40,5 @@ if uploaded_file:
             mime="application/pdf"
         )
 
-# GitHub link
 st.markdown("---")
 st.markdown("Made with ❤️ by [Dennis Mustafić](https://github.com/dennismstfc)")  # Replace with your name and GitHub URL
-

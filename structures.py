@@ -41,6 +41,7 @@ class Script:
         Check if two pages are incremental based on content similarity.
         A simple way to calculate similarity is to compare the length of the intersection
         of their words to the union of their words.
+        :return: True if the pages are incremental, False otherwise.
         """
         content1 = set(" ".join(page1.content).split())
         content2 = set(" ".join(page2.content).split())
