@@ -36,8 +36,6 @@ class Script:
         self.pages = filtered_pages
         self.page_numbers = [page.page_no for page in filtered_pages]
 
-
-
     def is_incremental(self, page1: Page, page2: Page, threshold: float = 0.9) -> bool:
         """
         Check if two pages are incremental based on content similarity.
