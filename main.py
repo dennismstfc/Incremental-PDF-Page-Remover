@@ -29,7 +29,7 @@ if uploaded_file:
     processor = PDFProcessor(file_path)  
     processed_path = processor.create_pdf_without_redundancy()
 
-    st.success(f"Processed script saved at: {processed_path}")
+    st.success(f"Processed script saved. Ready to download!")
 
     # Provide a download link for the processed PDF
     with open(processed_path, "rb") as f:
