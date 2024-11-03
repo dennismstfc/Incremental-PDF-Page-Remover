@@ -12,7 +12,7 @@ class Script:
         self.pages = pages
         self.page_numbers = [page.page_no for page in pages]
 
-    def remove_incremental_pages(self):
+    def remove_incremental_pages(self) -> None:	
         """
         Goal of this function is to remove incremental pages from the script, which lead to redundancy.
         We define incremental pages as those whose content is at least 80% similar to the previous page.
@@ -54,3 +54,11 @@ class Script:
 
         similarity = len(intersection) / len(union)
         return similarity >= threshold
+    
+    def get_content(self) -> str:
+        """
+        Get the content of the script as a single string.
+        :return: Script content as a string.
+        """
+        content = "".join([" ".join(page.content) for page in self.pages])
+        return content
