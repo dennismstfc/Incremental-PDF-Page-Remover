@@ -1,4 +1,6 @@
 import csv
+import argparse
+
 from pathlib import Path
 from datetime import datetime
 from watchdog.observers import Observer
@@ -113,13 +115,34 @@ class FileTracker(FileSystemEventHandler):
 
 
 if __name__ == "__main__":
-    directory_to_watch = Path("scripts")
-    csv_log_file = Path("test.csv")
+    # Argument parser for the directory and CSV log file
+    parser = argparse.ArgumentParser(
+        description="Monitor a directory for new PDF files and log details."
+        )
 
-    tracker = FileTracker(directory_to_watch, csv_log_file)
+    parser.add_argument(
+        "directory", type=Path, 
+        help="The directory to monitor for new PDF files"
+        )
 
-    try:
-        while True:
-            pass  # Keep the script running
-    except KeyboardInterrupt:
-        tracker.stop()
+    parser.add_argument(
+        "--csv", 
+        type=Path, 
+        default="default.csv", 
+        help="CSV log file to store the file details (default: default.csv)"
+        )
+    
+    args = parser.parse_args()
+
+    directory_to_monitor = args.directory
+    csv_log_file = args.csv
+
+    if not directory_to_monitor.exists():
+        raise FileNotFoundError(f"Directory not found: {directory_to_monitor}")
+    
+    print("Monitoring directory:", directory_to_monitor)
+    tracker = FileTracker(directory_to_monitor, csv_log_file)
+
+    # Keep the FileTracker running (is there a better way to do this?)
+    while True: 
+        pass
