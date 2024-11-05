@@ -60,5 +60,5 @@ class Script:
         Get the content of the script as a single string.
         :return: Script content as a string.
         """
-        content = "".join([" ".join(page.content) for page in self.pages])
+        content = "\n".join(["".join(page.content) for page in self.pages])
         return content

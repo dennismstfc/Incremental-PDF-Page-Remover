@@ -71,7 +71,7 @@ class FileTracker(FileSystemEventHandler):
                     'File Size', 
                     'Date Added', 
                     'Time Added',
-#                    'Content'
+                    'Content'
                     ])
 
         # Set up the observer
@@ -94,14 +94,18 @@ class FileTracker(FileSystemEventHandler):
 
         with open(self.csv_file, mode='a', newline='', encoding="utf-8") as csv_file_handle:
             writer = csv.writer(csv_file_handle)
+            # Removing commas to avoid issues with CSV formatting
+            content = file.content.replace(",", " ")
+            content = content.replace("\n", " ")
+
             writer.writerow([
                 file.file_name, 
                 file.full_path,
                 file.file_size, 
                 file.date_added, 
                 file.time_added,
-#                file.content <- this needs to get fixed. The string is currenly not correctly formatted.
-                ])
+                content 
+            ])
 
     def stop(self):
         self.observer.stop()
