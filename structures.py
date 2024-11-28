@@ -7,10 +7,11 @@ class Page:
 
 
 class Script:
-    def __init__(self, title: str, pages: List[Page]):
+    def __init__(self, title: str, pages: List[Page], threshold: float = 0.95):
         self.title = title
         self.pages = pages
         self.page_numbers = [page.page_no for page in pages]
+        self.threshold = threshold
 
     def remove_incremental_pages(self) -> None:	
         """
@@ -36,7 +37,7 @@ class Script:
         self.pages = filtered_pages
         self.page_numbers = [page.page_no for page in filtered_pages]
 
-    def is_incremental(self, page1: Page, page2: Page, threshold: float = 0.9) -> bool:
+    def is_incremental(self, page1: Page, page2: Page) -> bool:
         """
         Check if two pages are incremental based on content similarity.
         A simple way to calculate similarity is to compare the length of the intersection
@@ -53,7 +54,7 @@ class Script:
         union = content1.union(content2)
 
         similarity = len(intersection) / len(union)
-        return similarity >= threshold
+        return similarity >= self.threshold
     
     def get_content(self) -> str:
         """
