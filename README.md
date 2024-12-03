@@ -1,32 +1,56 @@
 # Incremental PDF Page Remover
 
-This project, **Incremental PDF Page Remover**, provides a convenient web interface to detect and remove redundant incremental pages in PDF files. Pages that are at least 80% similar to their previous version are considered redundant and only the last version in any sequence of incremental pages is retained. 
+**Incremental PDF Page Remover** helps remove redundant pages in PDF files. Pages that are similar to the previous version (based on a similarity threshold) are considered redundant, and only the last version in any sequence is retained.
 
-## Getting Started
-Install the required Python packages with:
-```bash
-pip install -r requirements.txt
-```
+### New Feature: Adjustable Similarity Threshold
+You can now adjust the similarity threshold using a slider, which can be set from **0% to 100%**. The default threshold is set to **90%**—if pages are more than 90% similar to the previous page, they will be removed.
 
 ### Important files
 - `main.py`: Runs the Streamlit web app.
-
-- `pdf_processor.py`: Contains the `PDFProcessor` class with the logic for identifying and removing redundant pages.
-- `scripts/`: Directory where uploaded PDF files are saved temporarily for processing.
+- `pdf_processor.py`: Contains the logic for removing redundant pages.
+- `scripts/`: Directory where uploaded PDFs are temporarily stored.
 
 ### How It Works
-1. **File Upload**: Use the Streamlit web interface to upload a PDF file.
-2. **Processing**: The uploaded PDF is processed to remove redundant pages based on a similarity threshold of 80%.
-3. **Download**: Once processed, download the optimized PDF with all redundant pages removed.
+1. **Upload PDF**: Use the Streamlit interface to upload a PDF.
+2. **Set Threshold**: Adjust the similarity threshold with the slider (default is 90%).
+3. **Process & Download**: Click the button to remove redundant pages and download the optimized PDF.
+
+Here’s the updated `Usage` section with the instructions for creating a virtual environment and installing the requirements:
+
 
 ## Usage
 
-1. **Run the Streamlit app**:
+1. **Clone the repository and navigate into the project**:
+   ```bash
+   git clone https://github.com/dennismstfc/Incremental-PDF-Page-Remover
+   cd Incremental-PDF-Page-Remover
+   ```
+
+2. **Create a virtual environment and activate it**:
+- For macOS/Linux:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+- For Windows:
+   ```bash
+   python -m venv venv
+   venv\Scripts\activate
+   ```
+
+3. **Install the required packages**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Run the app**:
    ```bash
    streamlit run main.py
    ```
-2. **Upload PDF**: Drag and drop a PDF file into the file uploader.
-3. **Process & Download**: Click the button to process the file and remove redundant pages. A download link will appear once processing is complete.
+
+5. **Upload PDF**: Drag and drop a file.
+
+6. **Adjust Threshold & Process**: Set the similarity threshold and click to remove redundant pages.
 
 ## Author
 Made with ❤️ by [Dennis Mustafić](https://github.com/dennismstfc)
