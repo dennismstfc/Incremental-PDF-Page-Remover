@@ -12,6 +12,8 @@ st.markdown("""
 
 uploaded_file = st.file_uploader("Choose a PDF file", type="pdf")
 
+threshold = st.slider("Set the similarity threshold for removing incremental pages", min_value=0.0, max_value=1.0, value=0.9)
+
 # Save the uploaded file into scripts/ folder
 if uploaded_file:
     # Create the scripts directory if it doesn't exist
@@ -26,7 +28,7 @@ if uploaded_file:
     st.success("File uploaded successfully!")
 
     # Process the uploaded file
-    processor = PDFProcessor(file_path)  
+    processor = PDFProcessor(file_path, threshold=threshold)  
     processed_path = processor.create_pdf_without_redundancy()
 
     st.success(f"Processed script saved. Ready to download!")

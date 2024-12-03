@@ -6,7 +6,7 @@ from standard_values import BASE_DIR, PROCESSED_SCRIPTS_DIR
 from structures import Page, Script
 
 class PDFProcessor:
-    def __init__(self, path: Path, should_remove: bool = True):
+    def __init__(self, path: Path, should_remove: bool = True, threshold: float = 0.95):
         # Making sure scripts/ folder exists, if not create it
         if not BASE_DIR.exists():
             os.mkdir(BASE_DIR)
@@ -18,6 +18,7 @@ class PDFProcessor:
         if not path.exists():
             raise FileNotFoundError(f"File not found: {path}")
 
+        self.threshold = threshold
         self.path = path
         self.should_remove = should_remove
         self._load_pdf()
@@ -37,7 +38,7 @@ class PDFProcessor:
             tmp_page = Page(idx, content)
             page_objects.append(tmp_page)
 
-        self.script = Script(self.path.stem, page_objects)
+        self.script = Script(self.path.stem, page_objects, self.threshold)
 
         if self.should_remove:
             self.script.remove_incremental_pages()
