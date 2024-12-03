@@ -15,9 +15,6 @@ You can now adjust the similarity threshold using a slider, which can be set fro
 2. **Set Threshold**: Adjust the similarity threshold with the slider (default is 90%).
 3. **Process & Download**: Click the button to remove redundant pages and download the optimized PDF.
 
-Here’s the updated `Usage` section with the instructions for creating a virtual environment and installing the requirements:
-
-
 ## Usage
 
 1. **Clone the repository and navigate into the project**:
